@@ -9,6 +9,7 @@ $result = sql_query($sql, false);
 ?>
 
 <!-- 팝업레이어 시작 { -->
+
 <div id="hd_pop">
     <h2>팝업레이어 알림</h2>
 
@@ -20,18 +21,17 @@ for ($i=0; $nw=sql_fetch_array($result); $i++)
         continue;
 ?>
 
-    <div id="hd_pops_<?php echo $nw['nw_id'] ?>" class="hd_pops" style="top:<?php echo $nw['nw_top']?>px;left:<?php echo $nw['nw_left']?>px">
-        <div class="hd_pops_con" style="width:<?php echo $nw['nw_width'] ?>px;height:<?php echo $nw['nw_height'] ?>px">
+    <div id="hd_pops_<?php echo $nw['nw_id'] ?>" class="hd_pops" style="top:<?php echo $nw['nw_top']?>%;left:<?php echo $nw['nw_left']?>%">
+        <div class="hd_pops_con" style="width:<?php echo $nw['nw_width'] ?>vw;height:<?php echo $nw['nw_height'] ?>vh">
             <?php echo conv_content($nw['nw_content'], 1); ?>
         </div>
-        <div class="hd_pops_footer">
-            <button class="hd_pops_reject hd_pops_<?php echo $nw['nw_id']; ?> <?php echo $nw['nw_disable_hours']; ?>"><strong><?php echo $nw['nw_disable_hours']; ?></strong>시간 동안 다시 열람하지 않습니다.</button>
-            <button class="hd_pops_close hd_pops_<?php echo $nw['nw_id']; ?>">닫기</button>
-        </div>
+        <button class="hd_pops_close hd_pops_<?php echo $nw['nw_id']; ?>"><p class="xi-close"></p></button>
     </div>
 <?php }
 if ($i == 0) echo '<span class="sound_only">팝업레이어 알림이 없습니다.</span>';
 ?>
+</div>
+<div class="pop_wrap">
 </div>
 
 <script>
@@ -46,6 +46,7 @@ $(function() {
     $('.hd_pops_close').click(function() {
         var idb = $(this).attr('class').split(' ');
         $('#'+idb[1]).css('display','none');
+        $('.pop_wrap').css('display','none');
     });
     $("#hd").css("z-index", 1000);
 });
