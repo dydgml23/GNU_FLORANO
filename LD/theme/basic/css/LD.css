@@ -1,0 +1,5 @@
+#ft #ft_link.ft_cnt{
+  display: flex;
+  justify-content: space-between;
+}
+.disN{display: none !important;}
